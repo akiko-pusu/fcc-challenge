@@ -1,0 +1,18 @@
+#navbar {
+    /* User story: 14 / should be shown on the left side of the screen */
+    position: fixed;
+    min-width: 290px;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 100%;
+    border-right: solid;
+    border-color: rgba(0, 22, 22, 0.4);
+}
+
+@media (max-width: 400px) {
+    #navbar {
+        background-color: ivory;
+        width: 100%;
+    }
+}
