@@ -1,6 +1,11 @@
 "use strict";
 const capitalizeString = (string) => {
-  string.charAt(0).toUpperCase() + string.slice(1);
+  if (typeof window === 'undefined') {
+    console.log('capitalizeString called!');
+  } else {
+    alert('capitalizeString called!');
+  }
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 const foo = "bar";
