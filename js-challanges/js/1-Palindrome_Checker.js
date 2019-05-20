@@ -12,5 +12,5 @@ function palindrome(str) {
 
   return converted === original;
 }
-    
+
 palindrome("A man, a plan, a canal. Panama");
