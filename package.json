@@ -1,0 +1,9 @@
+{
+  "name": "npm-scripts-for-fcc-challanges",
+  "version": "1.0.0",
+  "description": "npm scripts for fcc challanges",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "babel es6/src --out-dir es6/dest --source-maps --watch"
+  }
+}

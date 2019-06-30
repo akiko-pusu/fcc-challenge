@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FCC: JavaScript Algorithms and Data Structures Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="../fcc/technical-document-page.css">
+  <link rel="stylesheet" href="../fcc/ribbon.css">
+  <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+  <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <script
+    src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <header>
+      <h1>Solutions for the Certification</h1>
+    </header>
+    <ul>
+      <a class="nav-link" href="#Palindrome_Checker" rel="internal">
+        <li>
+          <ion-icon name="medical"></ion-icon>Palindrome Checker
+        </li>
+      </a>
+      <a class="nav-link" href="#Roman_Numeral_Converter" rel="internal">
+        <li>
+          <ion-icon name="medical"></ion-icon>Roman Numeral Converter
+        </li>
+      </a>
+      <a class="nav-link" href="#Caesars_Cipher" rel="internal">
+        <li>
+          <ion-icon name="medical"></ion-icon>Caesar Cipher
+        </li>
+      </a>
+      <a class="nav-link" href="#Telephone_Number_Validator" rel="internal">
+        <li>
+          <ion-icon name="medical"></ion-icon>Telephone Number Validator
+        </li>
+      </a>
+      <a class="nav-link" href="#Cash_Register" rel="internal">
+        <li>
+          <ion-icon name="medical"></ion-icon>Cash Register
+        </li>
+      </a>
+      <a class="nav-link" href="../index.html" rel="internal">
+        <li>
+          <ion-icon name="medical"></ion-icon>Goto Top
+        </li>
+      </a>
+    </ul>
+  </nav>
+
+  <!-- User Story: #1 -->
+  <main id="main-doc">
+    <!-- User Story: #2 & User Story: #4 -->
+    <section class="main-section" id="Palindrome_Checker">
+      <header>
+        <h2>
+          <ion-icon name="medical"></ion-icon>Palindrome Checker
+        </h2>
+      </header>
+      <article>
+        <a
+          href="https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/palindrome-checker">
+          <h3>Challenge 1: Palindrome Checker</h3>
+        </a>
+        Here is my solution: (<a href="js/1-Palindrome_Checker.js">Source: 1-Palindrome_Checker.js</a>)
+        <pre><code class="javascript">
+// 今回の課題の解答
+function palindrome(str) {
+  /* 
+    Step:
+    1. Remove non alphanumeric chars.
+    2. Change all chars to lowercase. 
+    3. reverse and join.
+    4. compare original and converted.
+  */
+  let original = str.toLowerCase().replace(/([^a-zA-Z0-9])/g, '');
+  let converted = original.split('').reverse().join('');
+
+  return converted === original;
+}
+    
+palindrome("A man, a plan, a canal. Panama");
+          </code>
+        </pre>
+      </article>
+    </section>
+
+    <section class="main-section" id="Roman_Numeral_Converter">
+      <header>
+        <h2>
+          <ion-icon name="medical"></ion-icon>Roman Numeral Converter
+        </h2>
+      </header>
+      <article>
+        <a
+          href="https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/roman-numeral-converter">
+          <h3>Challenge 2: Roman Numeral Converter</h3>
+        </a>
+        Here is my solution: (<a href="js/2-Roman_Numeral_Converter.js">Source: 2-Roman_Numeral_Converter.js</a>)
+        <pre>
+            <code class="javascript">
+// 今回の課題の解答
+function convertToRoman(num) {
+    /*
+    Step:
+    1. 対応表の配列を用意する (位ごとに使う文字をペアで用意)
+    2. 数値を位ごとに分割して配列で返す
+    3. 配列を順に処理、５と９は特別な数になるなどの条件分岐をする
+    4. ルールにしたがって変換
+    */
+    let place_arr = [
+        ["I", "V"], // 1の位
+        ["X", "L"], // 10の位
+        ["C", "D"], // 100の位
+        ["M", ""]   // 1000の位
+    ];
+
+    // 変換した各位の数字を入れる配列
+    let retval = [];
+
+    // Exp. [5, 8, 3] (385)
+    let parsed_num = convert_arr(num);
+
+    for (let i = 0; i < parsed_num.length; i++) {
+        let target = parsed_num[i];
+
+        if (target == 0) { continue; }
+
+        // 各位の基本の数字を判断 (基本、各位の5の文字、各位の次の位の文字：９で利用)
+        let base = place_arr[i][0];       // 1, 2, 3で利用
+        let count = target / Math.pow(10, i);
+        let char = '';
+
+        switch(true) {
+            case count == 1:
+                char = base;
+                break;
+            case count < 4:
+                char = Array(count + 1).join(base);
+                break;
+            case count == 4:
+                char = base + place_arr[i][1];
+                break;
+            case count == 5:
+                char = place_arr[i][1];
+                break;
+            case count == 9:
+                char = base + place_arr[i + 1][0];
+                break;
+            case count > 5:
+                char = place_arr[i][1] + Array(count + 1 - 5).join(base);
+                break;
+        }
+        retval.unshift(char);
+    }
+    return retval.join('');
+}
+
+// 数字を配列にする 315 => [5, 1, 3]
+function convert_arr(num) {
+    let divider = 1;
+    let arr = [];
+    while (divider <= num) {
+        divider = divider * 10;
+        let remainder = num % divider;
+        arr.push(remainder);
+        num = num - remainder; 
+    }
+    return arr;
+}
+
+convertToRoman(36);
+            </code>
+          </pre>
+      </article>
+    </section>
+
+    <section class="main-section" id="Caesars_Cipher">
+      <header>
+        <h2>
+          <ion-icon name="medical"></ion-icon>Caesars Cipher
+        </h2>
+      </header>
+      <article>
+        <a
+          href="https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/caesars-cipher">
+          <h3>Challenge 3: Caesars Cipher</h3>
+        </a>
+        Here is my solution: (<a href="js/3-Caesars_Cipher.js">Source: 3-Caesars_Cipher.js</a>)
+        <pre>
+              <code class="javascript">
+// 今回の課題の解答
+function rot13(str) { // LBH QVQ VG!
+  /*
+  STEP:
+  0. カエサル暗号を実行する関数を作る
+  1. 文字列を配列に入れる
+  3. 文字のものはカエサル暗号で変換する
+    (アルファベット文字じゃ無いものはフィルタから除外)
+  4. 変換した配列を再連結
+  */
+  let arr = str.split('');
+  return arr.map((char) => pot13(char)).join('');
+}
+
+function pot13(char) {
+  let firstCode = 'A'.charCodeAt(0);
+  let lastCode = 'Z'.charCodeAt(0);
+
+  let charCode = char.charCodeAt(0);
+  if (charCode < firstCode || charCode > lastCode) {
+    return char;
+  }
+
+  let position = charCode - firstCode;
+  let mod = (position + 13) % 26;
+  return String.fromCharCode(firstCode + mod);
+}
+
+// Change the inputs below to test ('FREE CODE CAMP')
+rot13("SERR PBQR PNZC");
+              </code>
+            </pre>
+      </article>
+    </section>
+
+    <section class="main-section" id="Telephone_Number_Validator">
+      <header>
+        <h2>
+          <ion-icon name="medical"></ion-icon>Telephone_Number_Validator
+        </h2>
+      </header>
+      <article>
+        <a
+          href="https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/telephone-number-validator">
+          <h3>Challenge 4: Telephone Number Validator</h3>
+        </a>
+        Here is my solution: (<a href="js/4-Telephone_Number_Validator.js">Source: 4-Telephone_Number_Validator.js</a>)
+        <pre>
+              <code class="javascript">
+ // 今回の課題の解答：1回目...  かなり読みにくい！！！！リファクタ必須！
+ function telephoneCheck(str) {
+   /*
+   STEP:
+   1. 文字列を配列に格納
+   2. 数字以外を除去、（）と-以外はフィルタ
+   3. 全部番号かどうかを抽出
+   4. 10桁以上１１桁
+   5. 11桁の場合は最初が1かどうかを確認
+   */
+   // if non number or non accepted characher exists
+   if (/[^0-9|\-|\(\d+\)|\s]/.test(str)) {
+     return false;
+   }
+ 
+ 　 // bracket should be paired with holding 3 numbers
+   if (/\(|\)/.test(str) && !/\(\d\d\d\)/.test(str)) {
+     return false;
+   }
+ 
+   str = str.replace(/(\d)(\-)(\d)/g, '$1 $3');
+   let arr = str.replace(/\(|\)/g, '').split(' ');
+ 
+   if (arr.length < 3) {
+     arr = [ arr.join('') ];
+     if (arr[0].length == 10) {
+       return true;
+     }
+     if (arr[0].length < 9) {
+       return false;
+     }
+   }
+ 
+   if (arr.length == 1 && arr[0].length == 10) {
+     return true;
+   }
+ 
+   if (arr.length == 1 && arr[0].length == 11 
+       && arr[0].charAt(0) != '1') {
+     return false;
+   }
+ 
+   if (arr.length == 4 && parseInt(arr[0]) != 1) {
+     return false;
+   }
+   return true;
+ }
+ telephoneCheck("(275)76227382");
+              </code>
+            </pre>
+      </article>
+    </section>
+
+    <section class="main-section" id="Cash_Register">
+      <header>
+        <h2>
+          <ion-icon name="medical"></ion-icon>Cash Register
+        </h2>
+      </header>
+      <article>
+        <a
+          href="https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/cash-register">
+          <h3>Challenge 5: Cash Register</h3>
+        </a>
+        Here is my solution: (<a href="js/5-Cash_Register.js">Source: 5-Cash_Register.js</a>)
+        <pre>
+              <code class="javascript">
+// Ref. https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/cash-register
+const UNIT = {
+  0.01: "PENNY",
+  0.05: "NICKEL",
+  0.1: "DIME",
+  0.25: "QUARTER",
+  1: "ONE",
+  5: "FIVE",
+  10: "TEN",
+  20: "TWENTY",
+  100: "ONE HUNDRED"
+};
+
+
+const UNITS = {
+  "PENNY": 0.01,
+  "NICKEL": 0.05,
+  "DIME": 0.1,
+  "QUARTER": 0.25,
+  "ONE": 1,
+  "FIVE": 5,
+  "TEN": 10,
+  "TWENTY": 20,
+  "ONE HUNDRED": 100
+};
+
+
+function isEnough(change, cidObj, currency) {
+  let total = 0;
+  let target = 0;
+
+  let keys = Object.keys(cidObj);
+  keys.forEach(function (item) {
+    if (currency.includes(Number(item))) {
+      target += cidObj[item]['amount'] * 100;
+    }
+    total += cidObj[item]['amount'] * 100;
+  });
+
+  if (total == change * 100) {
+    return "CLOSED";
+  }
+
+  if (target < change * 100 || target == 0) {
+    return "INSUFFICIENT_FUNDS";
+  }
+
+  return "OPEN";
+}
+
+/*
+currencys(0.5)
+[ '0.01', '0.05', '0.1', '0.25' ]
+*/
+function currencys(change) {
+  let keys = Object.keys(UNIT);
+  let units = keys.map((item) => parseFloat(item));
+  units = units.filter((value) => { return change > value });
+  return units.sort((a, b) => a - b).reverse();
+}
+
+/*
+  cidObj
+  [["PENNY", 1.01], ["NICKEL", 2.05] ] =>
+    { '0.01': { amount: 1.01, coins: 101, key: 'PENNY', unit: 0.01 },
+      '0.05': { amount: 2.05, coins: 41, key: 'NICKEL', unit: 0.05 } }
+*/
+function generateObj(change, units, retval, cidObj) {
+  // condition to end up recrsive
+  if (units.length == 0) {
+    return [];
+  }
+
+  let c_unit = units[0];
+  let c_name = UNIT[c_unit];
+
+  // その単位の残りを計算する
+  let rest = cidObj[c_unit].amount;
+
+  // お釣りの金額が対応する一番上の位のコインではまかないきれない場合
+  if (rest < change) {
+    // 一旦一番上の位のコインでの残高を引く
+    change = (change - rest).toFixed(2);
+    retval[c_name] = rest;
+
+    // 一つコインの単位を下げる
+    units.shift();
+    generateObj(change, units, retval, cidObj);
+  }
+
+  // お釣りの金額が対応する一番上の位のコインでもカバーできる場合
+  // ちょうどの場合と端数の場合を考慮する
+  if (rest >= change) {
+
+    // 対象のコインの何枚分かのお釣りがある場合
+    if (change >= units[0]) {
+      change = (change - parseFloat(c_unit)).toFixed(2);
+      if (retval.hasOwnProperty(c_name)) {
+        retval[c_name] += parseFloat(c_unit);
+      } else {
+        retval[c_name] = parseFloat(c_unit);
+      }
+      generateObj(change, units, retval, cidObj);
+    } else if (change < c_unit) {
+      units.shift();
+      generateObj(change, units, retval, cidObj);
+    }
+  }
+  return Object.entries(retval);
+};
+
+
+/*
+  [["PENNY", 1.01], ["NICKEL", 2.05] ] =>
+    { '0.01': { amount: 1.01, coins: 101, key: 'PENNY', unit: 0.01 },
+      '0.05': { amount: 2.05, coins: 41, key: 'NICKEL', unit: 0.05 } }
+*/
+function convertCid(cid) {
+  let obj = {};
+
+  cid.forEach(function (item) {
+    let divided = item[1] * 100;
+    let divider = UNITS[item[0]] * 100;
+    obj[UNITS[item[0]]] = {
+      amount: item[1], coins: Math.round(divided / divider), key: item[0], unit: UNITS[item[0]]
+    };
+  });
+  return obj;
+}
+
+function checkCashRegister(price, cash, cid) {
+  let changeVal = cash - price;
+  let currency = currencys(changeVal);
+  let cidObj = convertCid(cid);
+
+  let status = isEnough(changeVal, cidObj, currency);
+  let change = [];
+
+  switch (status) {
+    case "INSUFFICIENT_FUNDS":
+      break;
+    case "CLOSED":
+      change = cid;
+      break;
+    case "OPEN":
+      change = generateObj(changeVal, currency, {}, cidObj);
+      break;
+  }
+  return { status: status, change: change }
+}
+
+checkCashRegister(19.5, 20, [
+    ["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], 
+    ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], 
+    ["TEN", 20], ["TWENTY", 60],["ONE HUNDRED", 100]
+  ]
+);
+              </code>
+            </pre>
+      </article>
+    </section>
+
+    <footer>
+      This page is provided as one of theJavaScript Algorithms and Data Structures Project's work of <a
+        href="https://learn.freecodecamp.org/" target="_blank" rel="noopener noreferrer">
+        freeCodeCamp</a>.
+    </footer>
+  </main>
+</body>
+
+</html>
