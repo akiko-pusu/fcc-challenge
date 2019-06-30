@@ -2,6 +2,11 @@
 
 Simple application to try to run the React component with Server Side Rendoring.
 
+Thank you so much for this article and sample repository.
+
+- <https://medium.com/@danlegion/react-server-side-rendering-with-express-b6faf56ce22>
+- <https://github.com/danleegion/React-SSR>
+
 ## Setup
 
 - Update Node.js
@@ -121,6 +126,18 @@ $ npm run dev
 Running on 3030...
 
 ```
+
+### Add React Component
+
+Create a folder and name it 'component' under the root folder or 'src' and create a jsx file.
+
+```bash
+mkdir ./src/components
+touch ./src/components/app.jsx
+
+npm install react react-dom handlebars
+```
+
 
 ## Note
 
