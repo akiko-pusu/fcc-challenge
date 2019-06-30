@@ -8,6 +8,7 @@ const app = express()
 app.use(compression())
 app.use(express.static('public'))
 
+// apply route and its action.
 app.use('/firstssr', ssr)
 
 const port = process.env.PORT || 3030
