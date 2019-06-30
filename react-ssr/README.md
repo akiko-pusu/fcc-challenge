@@ -1,4 +1,8 @@
-# Setup
+# About this directory
+
+Simple application to try to run the React component with Server Side Rendoring.
+
+## Setup
 
 - Update Node.js
 - Install express.js
@@ -44,7 +48,7 @@ react-ssr $ tree -L 1
 1 directory, 3 files
 ```
 
-## Run Hello World!
+## Run Hello World
 
 See: <https://expressjs.com/en/starter/hello-world.html>
 
@@ -59,6 +63,62 @@ Example app listening on port 3000!
 or
 
 $ npm start
+
+```
+
+## Followinf Blog
+
+See: <https://medium.com/@danlegion/react-server-side-rendering-with-express-b6faf56ce22>
+
+To write React, ES6 is used and then, it is required Babel to transpile.
+
+> We will be using ES6, therefore Babel is needed to transpile our code. We need these dependencies for development only and not for production release
+
+```bash
+$ npm install --save-dev @babel/cli @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/plugin-transform-runtime @babel/polyfill @babel/preset-env
+
+# create source directory
+$ mkdir src
+$ touch ./src/server.js
+
+$ npm install compression
+.....
+
+npm WARN react-ssr@1.0.0 No repository field.
+
++ @babel/polyfill@7.4.4
++ @babel/node@7.4.5
++ @babel/plugin-proposal-class-properties@7.4.4
++ @babel/plugin-transform-runtime@7.4.4
++ @babel/cli@7.4.4
++ @babel/core@7.4.5
++ @babel/preset-env@7.4.5
+added 370 packages from 173 contributors and audited 3856 packages in 47.064s
+found 0 vulnerabilities
+```
+
+- Add [.babelrc](./.babelrc), which is required as Babel configuration.
+  - Ref: <https://babeljs.io/docs/en/config-files#file-relative-configuration>
+  - Specify "node": true or "node": "current", which would be the same as "node": process.versions.node.
+    - Ref: <https://babeljs.io/docs/en/babel-preset-env#targetsnode>
+- Add task to transpile and run express server in package.json.
+
+> "dev": "nodemon --exec babel-node src/server.js"
+
+Here is an example. nodemon wraps node command and is watching the code.
+First, runs babel-node command to transpile, then sends the transoiled code to runs express server.
+
+```bash
+$ npm run dev
+
+> react-ssr@1.0.0 dev /Users/akiko/work/fcc-challenge/react-ssr
+> nodemon --exec babel-node src/server.js
+
+[nodemon] 1.19.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `babel-node src/server.js`
+Running on 3030...
 
 ```
 

@@ -4,12 +4,23 @@
   "description": "Test application to try Server Side React. ",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "dev": "nodemon --exec babel-node src/server.js",
+    "simple": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "@akiko_pusu",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.5"
   }
 }
