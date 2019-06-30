@@ -1,5 +1,5 @@
 node_modules
 es6/dest
 package-lock.json
-react-ssr/public/
+react-ssr/public/js/
 

@@ -6,7 +6,7 @@ const config = {
     app: ['./src/components/index.js']
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public/js/'),
     filename: '[name].js'
   },
   module: {
