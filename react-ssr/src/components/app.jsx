@@ -1,64 +1,67 @@
-import React from "react"
+import React from 'react'
 
 class App extends React.Component {
   constructor() {
     super()
-    this.handleButtonClick = this.handleButtonClick.bind(this)
+    // this.handleButtonClick = this.handleButtonClick.bind(this)
     this.handleTextChange = this.handleTextChange.bind(this)
     this.handleReset = this.handleReset.bind(this)
+    this.watch = this.watch.bind(this)
 
     this.state = {
-      name: "",
-      msg: ""
+      name: '',
+      msg: ''
     }
   }
 
-  //Handlers
-  handleButtonClick = e => {
-    const nameLen = this.state.name.length
-    if (nameLen > 0) {
-      this.setState({
-        msg: `You name has ${nameLen} characters including space`
-      })
-    }
-  }
-
+  // the function setState is asynchronous
+  // setState() does not always immediately update the component.
+  // It may batch or defer the update until later. This makes reading this.state
+  // right after calling setState() a potential pitfall. Instead,
+  // use componentDidUpdate or a setState callback (setState(updater, callback)),
+  // either of which are guaranteed to fire after the update has been applied.
   handleTextChange = e => {
-    this.setState({ name: e.target.value })
+    this.setState({ name: e.target.value }, this.watch)
+  }
+
+  // setState callback
+  watch = () => {
+    this.setState({
+      msg: `You name has ${this.state.name.length} characters including space.`
+    })
+    console.log('changed!')
   }
 
   handleReset = () => {
-    this.setState({ name: "", msg: "" })
+    this.setState({ name: '', msg: '' })
   }
   //End Handlers
 
   render() {
     let msg
 
-    if (this.state.msg !== "") {
+    if (this.state.name != '') {
       msg = <p>{this.state.msg}</p>
     } else {
-      msg = ""
+      msg = <p>Please input your name.</p>
     }
+
     return (
       //do something here where there is a button that will replace the text
       <div>
         <label>Your name </label>
         <input
-          type="text"
-          id="txtName"
-          name="txtName"
+          type='text'
+          id='txtName'
+          name='txtName'
           value={this.state.name}
           onChange={this.handleTextChange}
         />
-        <button id="btnSubmit" onClick={this.handleButtonClick}>
-          Calculate Name Length
-        </button>
-        <button id="btnReset" onClick={this.handleReset}>
+        <button id='btnReset' onClick={this.handleReset}>
           Reset All
         </button>
         <hr />
-        {msg}
+        { msg }
       </div>
     )
   }
