@@ -1,0 +1,64 @@
+body {
+  background-color: #ffffff;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+#display {
+  font-size: 10pt;
+  font-weight: bold;
+  text-align: center;
+  padding: 6pt;
+}
+
+#pad-container {
+  /* 要素を並列に並べる */
+  display: grid;
+  justify-content: center;
+  
+  // 3つずつ配置させる（9こあるので3x3のグリッドを想定）
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  grid-gap: 4px;
+  grid-column-gap: 4px;
+}
+
+/* Each pad item is squared. */
+.drum-pad {
+  background: ivory;
+  
+  /* 要素を並列に並べる */
+  display: flex;
+  
+  // コンテナ内のアイテムの交差軸方向（初期値では縦方向）を規定 (縦方向に中央に配置)
+  align-items: center;
+  // コンテナの横方向でのセンタリング
+  justify-content: center;
+  
+  // 100x100の要素にする
+  // 外側にボーダーが左右8px取るので116px使う
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  
+  font-size: 20pt;
+  font-weight: bold;
+  
+  border-style: solid;
+  border-width: 8px;
+  border-radius: 10%;
+  border-top-color: white;
+  border-left-color: white;
+  border-right-color: #f1cdbb;
+  border-bottom-color: #cc9797;
+  
+  &:hover {
+    background-color: #ffff69;
+  }
+}
+
+
+
