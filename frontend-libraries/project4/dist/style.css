@@ -1,0 +1,71 @@
+@charset "UTF-8";
+body {
+  background: #ffffff;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  /* 親コンテナにdisplay: flex; を使うと、子要素は縦並びでなく「横」に配置 */
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  grid-gap: 1px;
+  grid-column-gap: 2px;
+}
+
+.button {
+  font-size: 30px;
+  border: solid 1pt silver;
+  background: ivory;
+  /* 要素を並列に並べる */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+}
+.button.equals {
+  grid-column-start: 4;
+  grid-row-start: 4;
+  grid-row-end: 6;
+  height: 124px;
+}
+.button.zero {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 124px;
+}
+.button.displayWrapper {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  width: 254px;
+  text-align: right;
+  background: #FFF8E1;
+}
+.button:hover {
+  background: #FFF9C4;
+}
+.button.ac {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 124px;
+}
+
+#display {
+  width: 90%;
+  padding: 4px;
+}
+
+#formula {
+  width: 90%;
+  padding: 4px;
+  font-size: 10px;
+  color: silver;
+}

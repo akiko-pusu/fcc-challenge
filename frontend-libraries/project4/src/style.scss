@@ -1,0 +1,85 @@
+body {
+  background: #ffffff;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  /* 親コンテナにdisplay: flex; を使うと、子要素は縦並びでなく「横」に配置 */
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  
+  // 3つずつ配置させる（9こあるので3x3のグリッドを想定）
+  // grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr); 
+  justify-items: center;
+  grid-gap: 1px;
+  grid-column-gap: 2px;
+}
+
+.button {
+  font-size: 30px;
+  border: solid 1pt silver;
+  background: ivory;
+  
+  /* 要素を並列に並べる */
+  display: flex;
+  
+  // コンテナ内のアイテムの交差軸方向（初期値では縦方向）を規定 (縦方向に中央に配置)
+  align-items: center;
+  // コンテナの横方向でのセンタリング
+  justify-content: center;
+  
+  // 100x100の要素にする
+  // 外側にボーダーが左右8px取るので116px使う
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  
+  &.equals {
+    grid-column-start: 4; 
+    grid-row-start: 4; 
+    grid-row-end: 6;
+    height: 124px;
+  }
+  
+  &.zero {
+    grid-column-start: 1; 
+    grid-column-end: 3; 
+    width: 124px;
+  }
+  
+  &.displayWrapper {
+    grid-column-start: 1; 
+    grid-column-end: 5; 
+    width: 254px;
+    text-align: right;
+    background: #FFF8E1;
+  }
+  
+  &:hover {
+    background: #FFF9C4; 
+  }
+  
+  &.ac {
+    grid-column-start: 1; 
+    grid-column-end: 3; 
+    width: 124px;
+  }
+}
+
+#display {
+  width: 90%;
+  padding: 4px;
+}
+
+#formula {
+  width: 90%;
+  padding: 4px;
+  font-size: 10px;
+  color: silver;
+}
