@@ -1,0 +1,134 @@
+#app {
+  display: flex;
+  justify-content: center;
+  //justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+h2 {
+    font-size: 40px;
+    &::before {
+      content:'\f2f2';
+	    font-family:'Font Awesome 5 Free';
+	    font-weight: 900;
+      position: relative;
+      color: #00796B;
+      right: 8px;
+    }
+    margin-bottom: 0px;
+  }
+
+#container {
+  border: solid 10pt #D7CCC8;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 4px;;
+}
+
+button {
+  padding: 12px;
+  border-radius: 8px;  
+}
+
+#startButton::before {
+	content:'\f0da';
+	font-family:'Font Awesome 5 Free';
+	font-weight: 900;
+  position: relative;
+  right: 4px;
+}
+
+#stopButton::before {
+	content:'\f04c';
+	font-family:'Font Awesome 5 Free';
+	font-weight: 900;
+  position: relative;
+  right: 4px;
+}
+
+#reset::before {
+  content:'\f2f1';
+	font-family:'Font Awesome 5 Free';
+	font-weight: 900;
+  position: relative;
+  right: 4px;
+}
+
+#break-decrement::before, #session-decrement::before {
+  content:'\f068';
+	font-family:'Font Awesome 5 Free';
+	font-weight: 900;
+}
+
+#break-increment::before, #session-increment::before {
+  content:'\f067';
+	font-family:'Font Awesome 5 Free';
+	font-weight: 900;
+}
+
+button.running {
+  color: red;
+}
+
+button.stop {
+  color: blue;
+}
+
+span.hide {
+  display: none;
+}
+
+span.show {
+  display: block;
+}
+
+.label {
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+#time-left {
+  font-size: 40pt;
+  font-weight: bold;
+}
+
+#timer-container {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: solid 1pt #D7CCC8;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerContainer {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr); 
+  justify-items: center;
+}
+
+.lengthContainer {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr); 
+  justify-items: center;
+}
+
+#session-container, #break-container {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: solid 1pt #D7CCC8;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr); 
+  justify-items: center;
+  grid-gap: 1px;
+  grid-column-gap: 2px;
+}
