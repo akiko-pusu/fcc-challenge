@@ -1,0 +1,92 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Data Visualization Projects - Visualize Data with a Scatterplot Graph</title>
+  <link rel="stylesheet" href="../../fcc/base.css">
+  <link rel="stylesheet" href="../../fcc/ribbon.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+  <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+  <script src="./project2.js"></script>
+</head>
+<body>
+  <nav id="navbar">
+    <header><div id="title">Doping in Professional Bicycle Racing</div></header>
+  </nav>
+
+  <!-- JS for test -->
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  <!-- JS for test -->
+  <div class="main">
+    <div class="container">
+      <div class="visHolder">
+        <svg width="900" height="460"></svg>
+        <div id="tooltip"></div>
+      </div>
+      <div class='legend'></div>
+    </div>
+  </div>
+  <footer>*This is a simple scatterplot chart of freeCodeCamp's submittion tasks. <br/>
+    <p><a href="https://www.freecodecamp.com/" target="_blank">freeCodeCamp</a></p>
+  </footer>
+</body>
+
+<style>
+  html, body {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+  }
+  #tooltip {
+    position: absolute;
+    border-radius: 4px;
+    background-color: white;
+    border-color: silver;
+    border-style: solid;
+    border-width: 1px;
+    padding: 6px;
+    display: none;
+    font-size: x-small;
+    text-align: left;
+  }
+
+  #legend {
+    position: absolute;
+    border-radius: 4px;
+    background-color: white;
+    border-color: silver;
+    border-style: solid;
+    border-width: 0.5px;
+    padding: 6px;
+    font-size: small;
+    text-align: left;
+    left: 660;
+    top: 170;
+  }
+
+  /* 棒グラフにマウスオーバーの時に色を変更 */
+  .dot:hover {
+    fill: #ffef3b;
+    r: 7;
+  }
+
+  #navbar {
+    width: 100%;
+    position: fixed;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+  }
+
+  g.grid > g > line {
+    stroke: rgb(232, 230, 230);
+    opacity: 0.7;
+  }
+
+  path.domain {
+    stroke: rgb(187, 183, 183);
+    opacity: 0.7;
+  }
+
+</style>
+</html>
