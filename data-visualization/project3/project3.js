@@ -160,8 +160,8 @@ d3.json(url, (_err, data) => {
         `Temperature: ${d3.format('.1f')(d.variance + baseTemperature)}<br/>` +
         `Variance: ${d3.format('.1f')(d.variance)}`
       )
-      tooltip.style('left', xScale(d.year) + 30)
-      tooltip.style('top', yScale(d.month - 1) + 20)
+      tooltip.style('left', xScale(d.year) + 40)
+      tooltip.style('top', yScale(d.month - 1) + yScale.bandwidth() + 40)
       tooltip.style('transform', 'translateX(60px)')
     })
     .on('mouseout', () => {
