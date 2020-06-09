@@ -1,0 +1,32 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Data Visualization Projects - Visualize Data with a Treemap Diagram</title>
+  <link rel="stylesheet" href="../../fcc/base.css">
+  <link rel="stylesheet" href="../../fcc/ribbon.css">
+  <link rel="stylesheet" href="./project5.css">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+</head>
+<body>
+  <!-- JS for test -->
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <script src="./project5.js"></script>
+  <!-- JS for test -->
+  <div id='main'>
+    <h3 id='title'>Video Game Sales</h3>
+    <div id='description'>Top 100 Most Sold Video Games Grouped by Platform</div>
+    <svg id='tree-map' width="960" height="570"></svg>
+    <svg id='legend' width="600"></svg>
+  </div>
+  <a href='?data=videogames' class='dataset'>Video Game Sales</a>
+  <a href='?data=movies' class='dataset'>Movie Sales</a>
+  <a href='?data=kickstarter' class='dataset'>Kickstarter Pledges</a>
+  <footer>*This is a simple treemap diagram of freeCodeCamp's submittion tasks. <br/>
+    <p><a href="https://www.freecodecamp.com/" target="_blank">freeCodeCamp</a></p>
+  </footer>
+</body>
+</html>
