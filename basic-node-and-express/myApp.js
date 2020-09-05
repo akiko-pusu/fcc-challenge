@@ -2,9 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const app = express()
-
 module.exports = app
-console.log('Hello World')
 
 const absolutePath = path.join(__dirname, '/views/index.html')
 const assetsPath = path.join(__dirname, '/public') // ここを静的ファイルとして読み込ませたい
