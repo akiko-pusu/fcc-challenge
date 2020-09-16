@@ -1,10 +1,13 @@
 // File for Basic Node and Express
 const app = require('./myApp')
 
-// dotenvを有効にする指定
+// Enableddotenv
 require('dotenv').config()
 
-// これがないと起動しません
+// For "APIs and Microservices Projects - Timestamp Microservice"
+require('./project_1')(app)
+
+// This is required!
 // node server.js
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
