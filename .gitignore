@@ -3,3 +3,4 @@ es6/dest
 package-lock.json
 react-ssr/public/js/
 
+mongodb_and_mongoose/.env
