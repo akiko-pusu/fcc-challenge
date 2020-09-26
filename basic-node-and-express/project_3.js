@@ -12,9 +12,7 @@ const dns = require('dns')
 const url = require('url')
 const bodyParser = require('body-parser')
 
-
 const absolutePath = path.join(__dirname, '/views/project_3/index.html')
-const assetsPath = path.join(__dirname, '/public')
 
 require('dotenv').config()
 const mongoose = require('mongoose')
@@ -26,18 +24,18 @@ mongoose.connect(process.env.MONGO_URI,
 // Hold the sequencial number. (MongoDB default _id is based on hash.)
 const AutoIncrement = require('mongoose-sequence')(mongoose)
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 const urlSchema = new Schema(
   {
     originalUrl: { type: String, required: true },
     id: { type: Number }
   }
-);
+)
 
-urlSchema.plugin(AutoIncrement, {inc_field: 'id'})
+urlSchema.plugin(AutoIncrement, { inc_field: 'id' })
 
-urlSchema.statics.findOneOrCreate = async function findOneOrCreate(condition) {
-  const result = await findOneByCondition(condition, function (err, data) {
+urlSchema.statics.findOneOrCreate = async function findOneOrCreate (condition) {
+  const result = await findOneByCondition(condition, function (err) {
     if (err) return console.error(err)
   })
 
