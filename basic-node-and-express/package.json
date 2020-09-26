@@ -7,8 +7,13 @@
     "compile": "babel es6/src --out-dir es6/dest --source-maps --watch"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "body-parser": "~1",
+    "dotenv": "~8",
+    "express": "^4",
+    "mongoose": "^5.10.7",
+    "mongoose-sequence": "^5.2.2"
+  },
+  "devDependencies": {
+    "dns-lookup": "^0.1.0"
   }
 }
