@@ -4,12 +4,14 @@
   "description": "npm scripts for fcc challanges / basic-express",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel es6/src --out-dir es6/dest --source-maps --watch"
+    "compile": "babel es6/src --out-dir es6/dest --source-maps --watch",
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "~1",
     "dotenv": "~8",
     "express": "^4",
+    "express-validator": "^6.6.1",
     "mongoose": "^5.10.7",
     "mongoose-sequence": "^5.2.2"
   },
