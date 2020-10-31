@@ -25,36 +25,37 @@
  *
  */
 
-var analyser = require('./assertion-analyser');
-var EventEmitter = require('events').EventEmitter;
+var analyser = require('./assertion-analyser')
+var EventEmitter = require('events').EventEmitter
 
 var Mocha = require('mocha'),
   fs = require('fs'),
-  path = require('path');
+  path = require('path')
 
-var mocha = new Mocha();
+var mocha = new Mocha()
 var testDir = './tests'
-
 
 // Add each .js file to the mocha instance
 fs.readdirSync(testDir).filter(function (file) {
   // Only keep the .js files
-  return file.substr(-3) === '.js';
-
+  return file.substr(-3) === '.js'
 }).forEach(function (file) {
   mocha.addFile(
     path.join(testDir, file)
-  );
-});
+  )
+})
 
-var emitter = new EventEmitter();
+var emitter = new EventEmitter()
 emitter.run = function () {
 
-  var tests = [];
-  var context = "";
-  var separator = ' -> ';
+  var tests = []
+  var context = ''
+  var separator = ' -> '
   // Run the tests.
+  // eslint-disable-next-line no-useless-catch
   try {
+    // --ui tdd (TDD形式)での記載です
+    // eslint-disable-next-line no-unused-vars
     var runner = mocha.ui('tdd').run()
       .on('test end', function (test) {
         // remove comments
@@ -71,23 +72,21 @@ emitter.run = function () {
         tests.push(obj);
       })
       .on('end', function () {
-        emitter.report = tests;
+        emitter.report = tests
         emitter.emit('done', tests)
       })
       .on('suite', function (s) {
-        context += (s.title + separator);
-
+        context += (s.title + separator)
       })
       .on('suite end', function (s) {
         context = context.slice(0, -(s.title.length + separator.length))
       })
   } catch (e) {
-    throw (e);
+    throw (e)
   }
-};
+}
 
-module.exports = emitter;
-
+module.exports = emitter
 /*
  * Mocha.runner Events:
  * can be used to build a better custom report
